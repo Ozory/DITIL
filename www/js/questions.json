@@ -1,7 +1,7 @@
 [{
     "id": 1,
     "question": "Quem Descobriu o Brasil?",
-      "reply":
+      "replies":
        [{
         "option": "A",
         "title" :"Resposta 1 ",

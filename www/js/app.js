@@ -32,10 +32,15 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
+  })
+  
+  .state('init', {
+    url: '/init',
+    templateUrl: 'init.html'
   })
 
   // Each tab has its own nav history stack:
@@ -61,6 +66,6 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/questions');
+  $urlRouterProvider.otherwise('init');
 
 });
