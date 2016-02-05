@@ -1,11 +1,19 @@
 <ion-view view-title="Simulado" ng-controller="QuestionsCntrl">
   <ion-content class="padding">
-      <div ng-repeat="qst in Questions">
-        <div class="item item-divider">{{qst.id}} - {{qst.question}}</div>
+      
+      <div class="item item-divider">{{currentQuestion.id}} - {{currentQuestion.question}}</div>
         <div class="list">
-          <div ng-repeat="rp in qst.replies">
+          <div ng-repeat="rp in currentQuestion.replies">
             <ion-radio ng-value="{{rp.option}}">{{rp.option}} - {{rp.title}}</ion-radio>
           </div>
-      </div>
+          
+          </div>
+          <button class="button button-positive left" ng-show="!isFirst" ng-click="GoPrevious(currentQuestion.id)">
+            Anterior 
+          </button>
+          <button class="button button-positive right"   ng-click="GoNext(currentQuestion.id)">
+            {{NextText}}
+          </button>
+         
   </ion-content>
 </ion-view>

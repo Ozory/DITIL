@@ -2,3 +2,11 @@
 .back{
    background-color: #cacaca;
 }
+
+.right{
+    float:right;
+}
+
+.left{
+    float:left;
+}
