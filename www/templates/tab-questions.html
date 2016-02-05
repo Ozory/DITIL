@@ -1,0 +1,11 @@
+<ion-view view-title="Simulado" ng-controller="QuestionsCntrl">
+  <ion-content class="padding">
+      <div ng-repeat="qst in Questions">
+        <div class="item item-divider">{{qst.id}} - {{qst.question}}</div>
+        <div class="list">
+          <div ng-repeat="rp in qst.reply">
+            <ion-radio ng-value="{{rp.option}}">{{rp.option}} - {{rp.title}}</ion-radio>
+          </div>
+      </div>
+  </ion-content>
+</ion-view>
