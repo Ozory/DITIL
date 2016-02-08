@@ -1,7 +1,5 @@
 angular.module('starter.controllers', [])
 
-
-<<<<<<< HEAD
 .controller('QuestionsCntrl', function($scope,$http, Questions, Alerta, Loading) {
 
   $scope.currentQuestion = "";
@@ -68,27 +66,3 @@ angular.module('starter.controllers', [])
   }
   $scope.Get();
 })
-=======
-    .controller('QuestionsCntrl', function ($scope, $http, Questions) {
-        $scope.Get = function () {
-            var promise = $http.get('js/questions.json');
-            promise.then(
-                function (data) {
-                    $scope.Questions = data.data;
-                });
-
-        }
-        $scope.Get();
-
-    })
->>>>>>> a1e42f6cc9becfcfe0e200aaf83707da4aa6f196
-
-    .controller('ChatDetailCtrl', function ($scope, $stateParams, Questions) {
-        $scope.chat = Questions.get($stateParams.chatId);
-    })
-
-    .controller('AccountCtrl', function ($scope) {
-        $scope.settings = {
-            enableFriends: true
-        };
-    });
