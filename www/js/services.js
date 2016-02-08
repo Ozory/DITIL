@@ -27,11 +27,11 @@ angular.module('starter.services', [])
         }
         
         var getById = function(id){
-           return localStorage.getItem(id);
+           return sessionStorage.getItem(id);
         }
 
         var save = function (id, option) {
-            localStorage.setItem(id, option);
+            sessionStorage.setItem(id, option);
         }
 
         return {
