@@ -4,6 +4,7 @@ angular.module('starter.controllers', [])
     .controller('QuestionsCntrl', function ($scope, $http, Questions, Alerta, Loading) {
 
         $scope.currentQuestion = "";
+        $scope.currentOption = "";
         $scope.Questions = [];
         $scope.isLast = false;
         $scope.isFirst = false;
@@ -35,7 +36,7 @@ angular.module('starter.controllers', [])
         $scope.Get = function () {
 
             Loading.Show();
-            var pGetJson = $http.get('js/questions.json');
+            var pGetJson = Questions.All();
 
             pGetJson.then(
                 function (data) {
@@ -44,26 +45,49 @@ angular.module('starter.controllers', [])
                         // Pego a questão 
                         $scope.currentQuestion = $scope.Questions[0];
                         $scope.ValidateLenght();
+                        $scope.Set($scope.Questions[0].id);
                         Loading.Release();
                     }
                 });
         }
 
         $scope.GoNext = function (id) {
-            var question = Questions.get($scope.Questions, id + 1);
+            var question = Questions.Get($scope.Questions, id + 1);
             if (question != null) {
                 $scope.currentQuestion = question;
                 $scope.ValidateLenght();
+                $scope.Set(question.id);
             }
         }
 
         $scope.GoPrevious = function (id) {
-            var question = Questions.get($scope.Questions, id - 1);
+            var question = Questions.Get($scope.Questions, id - 1);
             if (question != null) {
                 $scope.currentQuestion = question;
                 $scope.ValidateLenght();
+                $scope.Set(question.id);
             }
         }
+
+        $scope.Save = function (id, option) {
+            Questions.Save(id, option);
+        }
+
+        $scope.Set = function (id) {
+            var anwser = Questions.GetById(id);
+            if (anwser) {
+
+                $scope.currentQuestion.replies.forEach(function (element) {
+
+                    if (anwser === element.option) {
+                        $scope.currentOption = element.option;
+                        return;
+                    }
+
+                }, this);
+            }
+        }
+
         $scope.Get();
     })
 
