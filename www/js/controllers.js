@@ -10,6 +10,7 @@ angular.module('starter.controllers', [])
         $scope.isFirst = false;
         $scope.NextText = "Próxima";
         $scope.PreviousText = "Anterior";
+        $scope.totalQuestions = 0;
 
         $scope.ValidateLenght = function () {
 
@@ -41,6 +42,7 @@ angular.module('starter.controllers', [])
             pGetJson.then(
                 function (data) {
                     $scope.Questions = data.data;
+                    $scope.totalQuestions = data.data.length;
                     if (data.data.length > 0) {
                         // Pego a questão 
                         $scope.currentQuestion = $scope.Questions[0];
@@ -52,6 +54,12 @@ angular.module('starter.controllers', [])
         }
 
         $scope.GoNext = function (id) {
+
+            if ($scope.isLast == true) {
+                $scope.Finalize();
+                return;
+            }
+
             var question = Questions.Get($scope.Questions, id + 1);
             if (question != null) {
                 $scope.currentQuestion = question;
@@ -69,8 +77,8 @@ angular.module('starter.controllers', [])
             }
         }
 
-        $scope.Save = function (id, option) {
-            Questions.Save(id, option);
+        $scope.Save = function (id, option, isRight) {
+            Questions.Save(id, option, isRight);
         }
 
         $scope.Set = function (id) {
@@ -79,13 +87,29 @@ angular.module('starter.controllers', [])
 
                 $scope.currentQuestion.replies.forEach(function (element) {
 
-                    if (anwser === element.option) {
+                    if (anwser.option === element.option) {
                         $scope.currentOption = element.option;
                         return;
                     }
 
                 }, this);
             }
+        }
+
+        $scope.Finalize = function () {
+
+            Alerta.Confirm("Deseja Finalizar?",
+                function () {
+                    $scope.CalculateResult();
+                }, null);
+
+        }
+
+        $scope.CalculateResult = function () {
+
+            var count = Questions.Calculate();
+            var result = (count/$scope.totalQuestions)*100;
+            Alerta.Alerta("Você acertou : " + result + "% <br>Equivalente a " + count + " questões." );
         }
 
         $scope.Get();

@@ -25,13 +25,33 @@ angular.module('starter.services', [])
             }
             return null;
         }
-        
-        var getById = function(id){
-           return sessionStorage.getItem(id);
+
+        var getById = function (id) {
+            return angular.fromJson(localStorage.getItem(id));
         }
 
-        var save = function (id, option) {
-            sessionStorage.setItem(id, option);
+        var save = function (id, option, isRight) {
+
+            var awnser = function () {
+                return {
+                    option: option,
+                    isRight: isRight
+                }
+            }
+            localStorage.setItem(id, angular.toJson(awnser()));
+        }
+        
+        var calculate = function(){
+            
+            var count = 0;
+             for (var i = 0; i < localStorage.length; i++) {
+                var opt = angular.fromJson(localStorage.getItem(localStorage.key(i)));
+                if(opt.isRight == 1){
+                    count++;
+                }
+            }
+            
+            return count;
         }
 
         return {
@@ -40,7 +60,8 @@ angular.module('starter.services', [])
             Remove: remove,
             Get: get,
             Save: save,
-            GetById :getById
+            GetById: getById,
+            Calculate: calculate
         }
 
     }])
@@ -62,14 +83,29 @@ angular.module('starter.services', [])
                 content: message,
                 buttons: [{
                     text: '<b>OK</b>',
-                    type: 'button-assertive',
+                    type: 'bar-balanced',
                 }]
+            });
+        };
+        
+        // Mensagem de Erro
+        var _confirm = function (message, yes, no) {
+            $ionicPopup.confirm({
+                title: 'DITIL',
+                template: message
+            }).then(function (res) {
+                if (res) {
+                    if (yes) { yes() };
+                } else {
+                    if (no) { no() };
+                }
             });
         };
 
         return {
             Alerta: _alert,
-            Erro: _erro
+            Erro: _erro,
+            Confirm: _confirm
         };
 
     })

@@ -4,7 +4,7 @@
         <div class="item item-divider">{{currentQuestion.id}} - {{currentQuestion.question}}</div>
         <div class="list">
             <div ng-repeat="rp in currentQuestion.replies">
-                <ion-radio ng-model="currentOption" ng-click="Save(currentQuestion.id,rp.option)" value="{{rp.option}}" >{{rp.option}} - {{rp.title}}</ion-radio>
+                <ion-radio ng-model="currentOption" ng-click="Save(currentQuestion.id,rp.option, rp.isRigth)" value="{{rp.option}}">{{rp.option}} - {{rp.title}}</ion-radio>
             </div>
 
         </div>
