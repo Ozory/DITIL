@@ -10,3 +10,7 @@
 .left{
     float:left;
 }
+
+.smallFont{
+    font-size: 9pt;
+}

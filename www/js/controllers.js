@@ -119,4 +119,10 @@ angular.module('starter.controllers', [])
         $scope.settings = {
             enableFriends: true
         };
+    })
+    
+     .controller('ConfigurationsCntrl', function ($scope) {
+        $scope.settings = {
+            continue: true
+        };
     });

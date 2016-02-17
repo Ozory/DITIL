@@ -54,6 +54,16 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'starter.controllers',
                     }
                 }
             })
+            
+            .state('tab.configurations', {
+                url: '/configurations',
+                views: {
+                    'tab-configurations': {
+                        templateUrl: 'templates/tab-configurations.html',
+                        controller: 'ConfigurationsCntrl'
+                    }
+                }
+            })
 
             .state('tab.sobre', {
                 url: '/sobre',
