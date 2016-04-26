@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 .back{
-   background-color: #cacaca;
+   background-color:#dcdcdc;
 }
 
 .right{
@@ -13,4 +13,14 @@
 
 .smallFont{
     font-size: 9pt;
+}
+
+.padding-header{
+    padding:20px;
+}
+
+.item-radio .radio-icon{
+    font-size:40px;
+    top:-20px;
+    color:green;
 }

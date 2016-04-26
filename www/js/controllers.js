@@ -101,7 +101,9 @@ angular.module('starter.controllers', [])
             Alerta.Confirm("Deseja Finalizar?",
                 function () {
                     $scope.CalculateResult();
-                }, null);
+                }, function(){
+                    alert('teste');
+                });
 
         }
 

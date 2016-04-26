@@ -19,7 +19,7 @@ angular.module('starter.services', [])
 
             Questions = questions;
             for (var i = 0; i < Questions.length; i++) {
-                if (Questions[i].id === parseInt(chatId)) {
+                if (Questions[i].id === (chatId)) {
                     return Questions[i];
                 }
             }
@@ -27,7 +27,7 @@ angular.module('starter.services', [])
         }
 
         var getById = function (id) {
-            return angular.fromJson(localStorage.getItem(id));
+            return angular.fromJson(localStorage.getItem("ditil_"+id));
         }
 
         var save = function (id, option, isRight) {
@@ -38,15 +38,15 @@ angular.module('starter.services', [])
                     isRight: isRight
                 }
             }
-            localStorage.setItem(id, angular.toJson(awnser()));
+            localStorage.setItem("ditil_"+id, angular.toJson(awnser()));
         }
         
         var calculate = function(){
             
             var count = 0;
              for (var i = 0; i < localStorage.length; i++) {
-                var opt = angular.fromJson(localStorage.getItem(localStorage.key(i)));
-                if(opt.isRight == 1){
+                var opt = angular.fromJson(localStorage.getItem("ditil_"+i));
+                if(opt !== null && opt.isRight == 1){
                     count++;
                 }
             }
